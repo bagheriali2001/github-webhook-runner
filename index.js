@@ -1,6 +1,6 @@
 const GithubWebHook = require('express-github-webhook');
 const express = require('express');
-const webhookHandler = GithubWebHook({ path: '/webhook', secret: process.env.SECRET });
+const webhookHandler = GithubWebHook({ path: process.env.URL_PATH, secret: process.env.SECRET });
 const dotenv = require('dotenv');
 dotenv.config();
 //////////////////////////////////////////////////////
