@@ -19,15 +19,15 @@ webhookHandler.on('*', async (event, repo, data) => {
     
     if (event == "push" && repo == "Dibye-api" && branch == "develop"){ 
         if(!doesFolderHave(repo, branch, PATH_TO_SCRIPT_FOLDER)){
-            logger.err(`${repo}${branch}.sh does not exist`)
-            throw Error(`${repo}${branch}.sh does not exist`)
+            logger.err(`${repo}-${branch}.sh does not exist`)
+            throw Error(`${repo}-${branch}.sh does not exist`)
         }
-        const { stdout , stderr } = await runScript(`bash ${repo}${branch}.sh`)
+        const { stdout , stderr } = await runScript(`cd ${PATH_TO_SCRIPT_FOLDER} && bash ${repo}-${branch}.sh`)
         if(stdout.indexOf != -1) {
-            logger.info(`${repo}${branch}.sh ran successfully`)
+            logger.info(`${repo}-${branch}.sh ran successfully`)
         }
         else {
-            logger.err(`${repo}${branch}.sh did not run successfully`)
+            logger.err(`${repo}-${branch}.sh did not run successfully`)
         }
     }
 });

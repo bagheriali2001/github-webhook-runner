@@ -20,7 +20,7 @@ const folderChecker = async (pathDir) => {
 
 const doesFolderHave = async (repo, branch, folderPath) => {
     const files = await folderChecker(folderPath)
-    if(files.includes(`${repo}${branch}.sh`)) {
+    if(files.includes(`${repo}-${branch}.sh`)) {
         return true
     }
     return false
