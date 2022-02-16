@@ -1,0 +1,27 @@
+{
+  "name": "github-webhook-runner",
+  "version": "1.0.0",
+  "description": "With this webhook you can update your servers via github webhook requests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bagheriali2001/github-webhook-runner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bagheriali2001/github-webhook-runner/issues"
+  },
+  "homepage": "https://github.com/bagheriali2001/github-webhook-runner#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-github-webhook": "^1.0.6",
+    "nodemon": "^2.0.15",
+    "winston": "^3.6.0"
+  }
+}
