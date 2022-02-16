@@ -61,7 +61,7 @@ If your main project is not in `node.js`, you can search for `Dockerfile` for yo
 
 
 ## Before you start
-Run `npm install` and create `.env` file like the one at [#Info](https://github.com/bagheriali2001/github-webhook-runner#Info).
+Run `npm install` and create `.env` file like the one at [#Info](../../../github-webhook-runner#Info).
 
 ## Start
 Run `npm start`
