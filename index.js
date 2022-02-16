@@ -3,17 +3,16 @@ dotenv.config();
 const GithubWebHook = require('express-github-webhook');
 const express = require('express');
 const webhookHandler = GithubWebHook({ path: process.env.URL_PATH, secret: process.env.SECRET });
-//////////////////////////////////////////////////////
+
 const logger = require('./logger');
 const {doesFolderHave, runScript} = require('./functions');
-//////////////////////////////////////////////////////
+
 const PATH_TO_SCRIPT_FOLDER = process.env.PATH_TO_SCRIPT_FOLDER
 let app = express();
 
 app.use(express.json());
 app.use(webhookHandler);
  
-// Now could handle following events
 webhookHandler.on('*', async (event, repo, data) => {
     const branch = data.ref.split('/')[2].trim()
     
