@@ -6,7 +6,7 @@ With this webhook you can update your servers via GitHub webhook requests.
 # Tutorial
 You can use this tutorial to get started with this webhook.
 
-##Info
+## Info
 Example `.env` file:
 ```dotenv
 PATH_TO_SCRIPT_FOLDER = "../scripts"
