@@ -1,8 +1,8 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const GithubWebHook = require('express-github-webhook');
 const express = require('express');
 const webhookHandler = GithubWebHook({ path: process.env.URL_PATH, secret: process.env.SECRET });
-const dotenv = require('dotenv');
-dotenv.config();
 //////////////////////////////////////////////////////
 const logger = require('./logger');
 const {doesFolderHave, runScript} = require('./functions');
