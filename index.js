@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const dotenv = require('dotenv');
 dotenv.config();
 const GithubWebHook = require('express-github-webhook');
