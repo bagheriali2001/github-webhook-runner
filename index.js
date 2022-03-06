@@ -17,7 +17,7 @@ app.use(webhookHandler);
 webhookHandler.on('*', async (event, repo, data) => {
     const branch = data.ref.split('/')[2].trim()
     
-    if (event == "push" && repo == "Dibye-api" && branch == "develop"){ 
+    if (event == "push"){ 
         if(!doesFolderHave(repo, branch, PATH_TO_SCRIPT_FOLDER)){
             logger.err(`${repo}-${branch}.sh does not exist`)
             throw Error(`${repo}-${branch}.sh does not exist`)

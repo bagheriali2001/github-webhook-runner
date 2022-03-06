@@ -11,7 +11,6 @@ const folderChecker = async (pathDir) => {
             return console.log('Unable to scan directory: ' + err);
         } 
         files.forEach(function (file) {
-            console.log(file)
             files.push(file);
         });
     });
