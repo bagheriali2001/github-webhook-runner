@@ -18,15 +18,18 @@ You can use this tutorial to get started with this webhook.
 Example `.env` file:
 ```dotenv
 PATH_TO_SCRIPT_FOLDER = "../scripts"
+PATH_TO_BOOTSTRAP_SCRIPT_FOLDER = "../bootstrap-scripts"
 PORT = 9000
 SECRET = "secret"
 URL_PATH = "/webhook"
 ```
 
 
-Folder structure for this `PATH_TO_SCRIPT_FOLDER` and rest of tutorial.
+Folder structure for this `PATH_TO_SCRIPT_FOLDER`, `PATH_TO_BOOTSTRAP_SCRIPT_FOLDER` and rest of tutorial.
 ```
 |─ scripts
+|──── repo-branch.sh
+|─ bootstrap-scripts
 |──── repo-branch.sh
 |
 |─ git-webhook-runner
@@ -43,7 +46,7 @@ For every branch you want to support, create a `.sh` file and put your script fo
 You can either use docker for your main project or not.
 
 ### Without Docker
-If you dont use docker you can use following example:
+If you don't use docker you can use following example:
 ```bash
 #!/bin/sh
 cd ../repo
@@ -61,7 +64,7 @@ git pull
 docker stop CONTAINER_NAME
 docker rm CONTAINER_NAME
 docker build -t IMAGE_NAME:IMAGE_TAG .
-docker run -d --name CONTAINER_NAME -p PORT:PORT dibye:IMAGE_NAME:IMAGE_TAG
+docker run -d --name CONTAINER_NAME -p PORT:PORT IMAGE_NAME:IMAGE_TAG
 ```
 In this case this script will automatically stop and delete the container and create a new image with new changes and runs it. Replace `CONTAINER_NAME`, `IMAGE_NAME`, `IMAGE_TAG` and `PORT` with your own values.
 
@@ -85,6 +88,7 @@ After=network.target
 
 [Service]
 Environment=PATH_TO_SCRIPT_FOLDER=../scripts
+Environment=PATH_TO_BOOTSTRAP_SCRIPT_FOLDER=../bootstrap-scripts
 Environment=PORT=9000
 Environment=SECRET=secret
 Environment=URL_PATH=/webhook

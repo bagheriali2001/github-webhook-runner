@@ -6,7 +6,7 @@ const express = require('express');
 const webhookHandler = GithubWebHook({ path: process.env.URL_PATH, secret: process.env.SECRET });
 
 const logger = require('./logger');
-const {doesFolderHave, runScript} = require('./functions');
+const {doesFolderHave, runScript, bootstrapRun} = require('./functions');
 
 const PATH_TO_SCRIPT_FOLDER = process.env.PATH_TO_SCRIPT_FOLDER
 let app = express();
@@ -31,5 +31,7 @@ webhookHandler.on('*', async (event, repo, data) => {
         }
     }
 });
+
+bootstrapRun(process.env.PATH_TO_BOOTSTRAP_SCRIPT_FOLDER)
 
 app.listen( process.env.PORT, () => console.log( `Node.js server started on port ${process.env.PORT}.` ) );

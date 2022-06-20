@@ -32,7 +32,19 @@ const runScript = async (command) => {
     return {stdout, stderr}
 }
 
+const bootstrapRun = async (pathToFolder) => {
+    const directoryPath = path.join(__dirname, pathToFolder);
+    fs.readdir(directoryPath, function (err, files) {
+        if (err) {
+            return console.log('Unable to scan directory: ' + err);
+        } 
+        files.forEach(function (file) {
+            runScript(`cd ${pathToFolder} && bash ${file}`)
+        });
+    });
+}
 module.exports = {
     doesFolderHave,
-    runScript
+    runScript,
+    bootstrapRun
 };
