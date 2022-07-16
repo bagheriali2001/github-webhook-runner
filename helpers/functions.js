@@ -5,7 +5,7 @@ const exec = util.promisify(require('child_process').exec);
 
 const folderChecker = async (pathDir) => {
     let files = [];
-    const directoryPath = path.join(__dirname, pathDir);
+    const directoryPath = path.join(__dirname, "../", pathDir);
     fs.readdir(directoryPath, function (err, files) {
         if (err) {
             return console.log('Unable to scan directory: ' + err);
@@ -33,7 +33,8 @@ const runScript = async (command) => {
 }
 
 const bootstrapRun = async (pathToFolder) => {
-    const directoryPath = path.join(__dirname, pathToFolder);
+    const directoryPath = path.join(__dirname, "../", pathToFolder);
+    console.log("directoryPath : ", directoryPath)
     fs.readdir(directoryPath, function (err, files) {
         if (err) {
             return console.log('Unable to scan directory: ' + err);
