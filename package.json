@@ -1,6 +1,6 @@
 {
   "name": "github-webhook-runner",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "With this webhook you can update your servers via github webhook requests.",
   "main": "index.js",
   "scripts": {
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/bagheriali2001/github-webhook-runner#readme",
   "dependencies": {
+    "discord.js": "^13.8.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-github-webhook": "^1.0.6",

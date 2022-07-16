@@ -1,6 +1,8 @@
 # github-webhook-runner
 With this webhook you can update your servers via GitHub webhook requests.
 
+Note that my recommended way of using this webhook server is to use it with `docker` and `systemd`, and all the future versions will be based on these.
+
 # Contents
  - [Tutorial](#tutorial) 
     - [Info](#info)
@@ -8,8 +10,11 @@ With this webhook you can update your servers via GitHub webhook requests.
       - [Without Docker](#without-docker)
       - [With Docker - Recommended](#with-docker---recommended)
     - [Before you start](#before-you-start)
+      - [How to get Discord credentials](#how-to-get-discord-credentials)
     - [Start](#start)
     - [Creating a service](#creating-a-service)
+  - [Discord](#discord)
+  - [Update Log](#update-log)
 
 # Tutorial
 You can use this tutorial to get started with this webhook.
@@ -22,6 +27,9 @@ PATH_TO_BOOTSTRAP_SCRIPT_FOLDER = "../bootstrap-scripts"
 PORT = 9000
 SECRET = "secret"
 URL_PATH = "/webhook"
+DISCORD_BOT_TOKEN = "discord-bot-token"
+DISCORD_SERVER_ID = "discord-server-id"
+DISCORD_CHANNEL_ID = "discord-channel-id"
 ```
 
 
@@ -74,6 +82,9 @@ If your main project is not in `node.js`, you can search for `Dockerfile` for yo
 ## Before you start
 Run `npm install` and create `.env` file like the one at [Info](#info).
 
+### How to get Discord credentials
+For creating your application and bot, and getting your `DISCORD_BOT_TOKEN` you can visit [Discord.js Docs](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot). And for finding your `DISCORD_SERVER_ID` and `DISCORD_CHANNEL_ID` the best way to copy channel link of desired channel in Discord. You get a link like `https://discord.com/channels/939xxxxxxxxxxxxxxx/997xxxxxxxxxxxxxxx` the first number (here is `939xxxxxxxxxxxxxxx`) is your `DISCORD_SERVER_ID` and the second number (here is `997xxxxxxxxxxxxxxx`) is your `DISCORD_CHANNEL_ID`.
+
 ## Start
 Run `npm start`
 
@@ -92,6 +103,9 @@ Environment=PATH_TO_BOOTSTRAP_SCRIPT_FOLDER=../bootstrap-scripts
 Environment=PORT=9000
 Environment=SECRET=secret
 Environment=URL_PATH=/webhook
+Environment=DISCORD_BOT_TOKEN="discord-bot-token"
+Environment=DISCORD_SERVER_ID="discord-server-id"
+Environment=DISCORD_CHANNEL_ID="discord-channel-id"
 Type=simple
 User=YOUR_USER
 WorkingDirectory=YOUR_WORKING_DIRECTORY
@@ -105,4 +119,20 @@ In first 4 line of [Service] section, place your environment variables and repla
 
 Then exit the file and run `sudo systemctl start webhook`. Check status `sudo systemctl status webhook`. If it is running, you can enable it with `sudo systemctl enable webhook`  and it will automatically restart.
 
+If you changed `webhook.service` file first run `systemctl daemon-reload` then `sudo systemctl restart webhook`
+
 You can always check last 100 the logs with `journalctl --unit=webhook -n 100`  or `journalctl --unit=webhook -n 100 --no-pager` (or you can simply run `journalctl -u webhook`).
+
+# Discord
+You can use this Discord bot to send notification messages to your desired Discord channel. In those messages you can use some information about the update and if the last run was successful.
+
+If the run was successful the embedded message color would be green, and if it failed the color would be red. There is one exception and its when we don't have a script to run, it that case the color would be blue.
+
+Right now this webhook only supports `push` events. But plan for next release is to support all events with custom messages.
+
+# Update Log
+
+### V1.1.0
+
+- Added Bootstrap scripts to run on server start.
+- Added Discord notifications.
