@@ -10,11 +10,16 @@ const myGuild = new Guild(myClient, { id: process.env.DISCORD_SERVER_ID });
 async function sendInfoToDiscord(event, repo, branch, data, success) {
     const channel = await myGuild.channels.fetch(process.env.DISCORD_CHANNEL_ID)
 	let color = 0x0099ff;
-	if (success === "successful") 
+	let footerMessage = "Script not found 🤔";
+	if (success === "successful") {
 		color = 0x00ff00;
-	else if (success === "failed")
+		footerMessage = "Deployed successfully 😉"
+	}
+	else if (success === "failed"){
 		color = 0xff0000;
-	
+		footerMessage = "Deploy Failed 😱";
+	}
+
     const embed = {
 		color: color,
 		title: `GitHub (${event}) action on ${repo}/${branch}`,
@@ -35,7 +40,7 @@ async function sendInfoToDiscord(event, repo, branch, data, success) {
 		],
 		timestamp: new Date(),
 		footer: {
-			text: success ? "Deployed successfully!!" : "Deploy Failed!!",
+			text: footerMessage,
 		},
 	};
 

@@ -10,7 +10,7 @@ const {doesFolderHave, runScript, bootstrapRun} = require('./helpers/functions')
 
 const PATH_TO_SCRIPT_FOLDER = process.env.PATH_TO_SCRIPT_FOLDER;
 
-const useDiscordNotification = (process.env.DISCORD_BOT_TOKEN && process.env.DISCORD_SERVER_ID && process.env.DISCORD_CHANNEL_ID) === 'true';
+const useDiscordNotification = (process.env.DISCORD_BOT_TOKEN && process.env.DISCORD_SERVER_ID && process.env.DISCORD_CHANNEL_ID) ? true : false;
 const { sendInfoToDiscord } = require('./helpers/discord.js');
 let app = express();
 
